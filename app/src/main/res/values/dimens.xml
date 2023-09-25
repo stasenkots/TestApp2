@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="message_text_size">24sp</dimen>
+    <dimen name="message_padding_horizontal">32dp</dimen>
+    <dimen name="message_padding_vertical">24dp</dimen>
+    <dimen name="message_margin_vertical">8dp</dimen>
+    <dimen name="message_margin_horizontal">15dp</dimen>
+    <dimen name="chat_input_layout_padding_vertical">15dp</dimen>
+    <dimen name="сhat_input_layout_margin_end">5dp</dimen>
+    <dimen name="chat_input_layout_margin_start">10dp</dimen>
+    <dimen name="chat_input_box_stroke_size">3dp</dimen>
+</resources>

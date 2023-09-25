@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.chat.ChatFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_recycle_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/chat_input_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_message" />
+
+    <LinearLayout
+        android:id="@+id/chat_input_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/chat_input_background_color"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/chat_input_layout_padding_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/chat_input"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/chat_input_layout_margin_start"
+            android:layout_marginEnd="@dimen/сhat_input_layout_margin_end"
+            android:layout_weight="1"
+            android:hint="@string/enter_message"
+            app:boxStrokeColor="@color/chat_input_box_stroke_color"
+            app:boxStrokeWidth="@dimen/chat_input_box_stroke_size">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/send_message_button_background_rounded"
+            android:src="@drawable/send_message_button_image" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
