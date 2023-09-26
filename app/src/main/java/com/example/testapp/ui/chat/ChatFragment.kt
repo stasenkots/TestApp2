@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testapp.databinding.FragmentChatBinding
-import com.example.testapp.ext.appComponent
 import com.example.testapp.ext.closeKeyboard
 import com.example.testapp.ui.chat.adapter.MessageAdapterDataObserver
 import com.example.testapp.ui.chat.adapter.MessageAdapter
@@ -28,9 +27,7 @@ class ChatFragment : Fragment() {
 
     private val messageAdapter = MessageAdapter()
 
-    private val viewModel: ChatViewModel by viewModels {
-        appComponent.chatViewModelFactory
-    }
+    private val viewModel: ChatViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

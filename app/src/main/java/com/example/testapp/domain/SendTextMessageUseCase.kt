@@ -1,6 +1,7 @@
 package com.example.testapp.domain
 
 import com.example.testapp.data.Message
+import com.example.testapp.data.MessageRepository
 import javax.inject.Inject
 
 class SendTextMessageUseCase @Inject constructor(

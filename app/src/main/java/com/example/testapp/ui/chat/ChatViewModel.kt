@@ -2,29 +2,27 @@ package com.example.testapp.ui.chat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.testapp.data.Message
-import com.example.testapp.domain.GetAllMessagesUseCase
-import com.example.testapp.domain.SendTextMessageUseCase
+import com.example.testapp.di.ChatComponent
+import com.example.testapp.di.DaggerChatComponent
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
-import kotlinx.coroutines.flow.buffer
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-class ChatViewModel(
-    getAllMessagesUseCase: GetAllMessagesUseCase,
-    private val sendTextMessageUseCase: SendTextMessageUseCase
-) : ViewModel() {
+class ChatViewModel : ViewModel() {
+
+    private val chatComponent: ChatComponent by lazy { DaggerChatComponent.create() }
+
+    private val getAllMessagesUseCase = chatComponent.getAllMessagesUseCase
+    private val sendTextMessageUseCase = chatComponent.sendTextMessageUseCase
 
     val messages = getAllMessagesUseCase.execute()
         .flowOn(Dispatchers.IO)
-        .buffer(capacity = UNLIMITED)
 
     fun sendTextMessage(text: String) {
         viewModelScope.launch(Dispatchers.IO) {
             sendTextMessageUseCase.execute(text)
         }
     }
+
 
 }

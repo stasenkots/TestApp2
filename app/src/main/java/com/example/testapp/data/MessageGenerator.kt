@@ -1,18 +1,19 @@
 package com.example.testapp.data
 
 import com.example.testapp.R
+import com.example.testapp.di.ChatScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.util.UUID
+import kotlinx.coroutines.flow.merge
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject.Inject
-import kotlin.random.Random
 
-class MessageGenerator @Inject constructor() {
+@ChatScope
+class MessageGenerator @Inject constructor() : ReceiverMessageSource {
 
     private var count = AtomicInteger()
-    fun generateTextMessage(): Flow<Message> {
+    private fun generateTextMessage(): Flow<Message> {
         return flow {
             while (true) {
                 delay(1000)
@@ -24,7 +25,7 @@ class MessageGenerator @Inject constructor() {
         }
     }
 
-    fun generateTextWithImageMessage(): Flow<Message> {
+    private fun generateTextWithImageMessage(): Flow<Message> {
         return flow {
             while (true) {
                 delay(2000)
@@ -35,4 +36,7 @@ class MessageGenerator @Inject constructor() {
 
         }
     }
+
+    override val messages: Flow<Message>
+        get() =  merge(generateTextWithImageMessage(), generateTextMessage())
 }
